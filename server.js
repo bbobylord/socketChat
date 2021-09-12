@@ -5,6 +5,8 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 const User = require("./models/User");
 const app = express();
+const path = require("path");
+
 const { uploadVoice, uploadFile } = require("./middleware/upload");
 app.use(bodyParser());
 app.use(cors());
