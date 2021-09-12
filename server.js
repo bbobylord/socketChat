@@ -19,7 +19,7 @@ app.use("/*", (req, res) => {
   res.sendFile(path.join(__dirname, "../public", "index.html"));
 });
 
-app.post("/login", async (req, res) => {
+app.post("/api/login", async (req, res) => {
   const username = req.body.username;
   const gender = parseInt(req.body.gender);
   const user = await User.findOne({ username });
@@ -32,7 +32,7 @@ app.post("/login", async (req, res) => {
   res.status(200).send({});
 });
 
-app.get("/getUsers", async (req, res) => {
+app.get("/api/getUsers", async (req, res) => {
   const users = await User.find({});
   res.send(users);
 });
@@ -43,7 +43,7 @@ const upFiles = uploadFile.fields([{ name: "file", maxCount: 1 }]);
 app.post("/uploadVoice", upVoice, async (req, res) => {
   if (req.files) {
     const filePath =
-      `http://localhost:3010/` +
+      `http://157.90.143.52:3010/` +
       req.files.voiceMessage[0].path.slice(7).replace(/\\/g, "/");
     await res.json({
       filePath: filePath,
@@ -54,10 +54,10 @@ app.post("/uploadVoice", upVoice, async (req, res) => {
     });
   }
 });
-app.post("/uploadFile", upFiles, async (req, res) => {
+app.post("/api/uploadFile", upFiles, async (req, res) => {
   if (req.files) {
     const filePath =
-      `http://localhost:3010/` +
+      `http://157.90.143.52:3010/` +
       req.files.file[0].path.slice(7).replace(/\\/g, "/");
     await res.json({
       filePath: filePath,
