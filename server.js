@@ -15,10 +15,6 @@ app.get("/", (req, res) => {
   res.send("salam . I am alive");
 });
 
-app.use("/*", (req, res) => {
-  res.sendFile(path.join(__dirname, "../public", "index.html"));
-});
-
 app.post("/api/login", async (req, res) => {
   const username = req.body.username;
   const gender = parseInt(req.body.gender);
@@ -170,4 +166,8 @@ mySocket.on("connection", (socket) => {
   socket.on("disconnect", () => {
     console.log("User disconnected");
   });
+});
+
+app.use("/*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../public", "index.html"));
 });
